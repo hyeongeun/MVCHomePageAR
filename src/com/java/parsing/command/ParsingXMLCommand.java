@@ -10,7 +10,8 @@ public class ParsingXMLCommand implements Command {
 	@Override
 	public String proRequest(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
-		return "/WEB-INF/views/ajax/proxy/pXML.jsp";
+//		return "/WEB-INF/views/ajax/proxy/pXML.jsp";
+		return "/WEB-INF/views/jQueryAjax/proxy/pXML.jsp";
 	}
 
 }

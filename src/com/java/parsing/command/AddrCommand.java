@@ -10,7 +10,8 @@ public class AddrCommand implements Command {
 	@Override
 	public String proRequest(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// TODO Auto-generated method stub
-		return "/WEB-INF/views/ajax/map/addMap.jsp";
+		return "/WEB-INF/views/jQueryAjax/map/addMap.jsp";
+		//return "/WEB-INF/views/ajax/map/addMap.jsp";
 	}
 
 }

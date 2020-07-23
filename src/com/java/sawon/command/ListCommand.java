@@ -10,6 +10,7 @@ public class ListCommand implements Command {
 	@Override
 	public String proRequest(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 			
-		return "/WEB-INF/views/ajax/sawon/list.jsp";
+		//return "/WEB-INF/views/ajax/sawon/list.jsp";
+		return "/WEB-INF/views/jQueryAjax/sawon/list.jsp";
 	}
 }

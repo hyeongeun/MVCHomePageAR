@@ -21,6 +21,7 @@ public class ReplyListCommand implements Command {
 		// list 넘겨주기
 		request.setAttribute("replyList",replyList);
 		
-		return "/WEB-INF/views/ajax/reply/list.jsp";
+		//return "/WEB-INF/views/ajax/reply/list.jsp";
+		return "/WEB-INF/views/jQueryAjax/reply/list.jsp";
 	}
 }

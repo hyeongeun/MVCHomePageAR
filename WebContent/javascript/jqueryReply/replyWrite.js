@@ -1,23 +1,38 @@
-
-
 /**
  * 
  */
 
 var arr=new Array();
-
 var root=null;
 
 function writeToServer(requestRoot) {
-	var root=requestRoot;
-	var writeReply=document.getElementById("writeReply").value;
-	arr.push("[writeToServer] root : "+root);
-	arr.push("[writeToServer] writeReply : "+writeReply)
+	 root=requestRoot;
 	
-	var url=root+"/reply/replyWrite.do";
+	var writeReply =$("#writeReply").val();
 	var params="writeReply="+writeReply;
+	var url=root+"/reply/replyWrite.do?"+params;
+	arr.push(url);
+	//alert(url);
 	
-	sendRequest("GET",url,params,writeFromServer);
+	
+	$.ajax({
+		url:url,
+		type:"get",
+		dataType:"text",
+		success:writeProcess
+	});
+	
+	
+	
+}
+
+function writeProcess(data){
+	//alert(data);
+	var obj = $.parseJSON(data);
+	arr.push(obj.bunho);
+	arr.push(obj.line_reply);
+	alert(arr.join("\n"));
+	
 }
 
 /* TEXT로 받아주기 */
