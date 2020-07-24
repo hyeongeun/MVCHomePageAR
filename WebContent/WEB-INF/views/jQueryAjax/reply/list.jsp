@@ -10,8 +10,8 @@
 	<title>Insert title here</title>
 	<script type="text/javascript" src="${root}/xhr/jquery-3.5.1.js"></script>	
 	<script type="text/javascript" src="${root}/javascript/jqueryReply/replyWrite.js"></script>
-<!-- 	<script type="text/javascript" src="${root}/javascript/reply/replyDelete.js"></script> -->
-<!-- 	<script type="text/javascript" src="${root}/javascript/reply/replyUpdate.js"></script>-->
+	<script type="text/javascript" src="${root}/javascript/jqueryReply/replyDelete.js"></script>
+	<script type="text/javascript" src="${root}/javascript/jqueryReply/replyUpdate.js"></script>	
 	<link rel="stylesheet" href="${root}/css/reply/reply.css"/>
 </head>
 <body>
@@ -33,7 +33,7 @@
 				<span class="cssReply">${replyDTO.line_reply}</span>
 				<span class="cssUpDel">
 					<a href="javascript:deleteToServer('${replyDTO.bunho}','${root}')">삭제&nbsp;</a>					
-					<a href="javascript:selectToServer('${replyDTO.bunho}','${root}')">수정</a>
+					<a id="stop" href="javascript:selectToServer('${replyDTO.bunho}','${root}')">수정</a>
 				</span>
 			</div>
 		</c:forEach>

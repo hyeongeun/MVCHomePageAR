@@ -11,10 +11,38 @@ function selectToServer(bunho,requestRoot) {
 	//arr.push(bunho+" / "+root);
 	//alert(arr.join("\n"));
 	
-	var url=root+"/reply/replySelect.do";
 	var params="bunho="+bunho;
+	var url=root+"/reply/replySelect.do?"+params;
+	
+	$("a").unbind();
+	//alert(url);
 
-	sendRequest("GET",url,params,selectFromServer);
+	$.ajax({
+		url:url,
+		tye:"get",
+		data:"text",
+		success:selectProcess
+	});
+}
+
+function selectProcess(data){
+	
+	var obj = $.parseJSON(data);
+	//alert(obj.bunho);
+	//alert(obj.reply);
+	
+	var bunho = obj.bunho;
+	var reply = obj.reply;
+	
+	var updateReplyText = "<div id=up"+bunho+">";
+	updateReplyText += "<input type='text' class='updateText' value='"+reply+"'/>";
+	updateReplyText += "<input type='button' value='수정' name='btn' onclick='updateToServer('"+bunho+"',.updateText)>";
+	updateReplyText += "</div>";
+	alert(updateReplyText);
+	$("#"+bunho).append(updateReplyText);
+	
+	
+	
 }
 
 function selectFromServer() {
@@ -30,13 +58,9 @@ function selectFromServer() {
 		// 답글 내용 뿌려줄 태그를 생성하여 내용 뿌려주기.
 		// 생성할 태그는 수정이 완료되면 삭제된다. (구별되는 식별자를 부여해햐 한다.)
 		// 전체 div
-		var div=document.createElement("div");
-		div.id="up"+bunho;
 		
 		// 기존 텍스트 뿌리고, 수정할 텍스트 입력할 input
-		var inputText=document.createElement("input");
-		inputText.type="text";
-		inputText.value=reply;
+
 		
 		// 수정 작업 버튼 input
 		var inputButton=document.createElement("input");

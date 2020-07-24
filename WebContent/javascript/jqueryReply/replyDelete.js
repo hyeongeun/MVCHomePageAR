@@ -4,16 +4,29 @@
 
 function deleteToServer(bunho,root) {
 	// 번호 잘 넘어오는지 확인하기
-	arr.push(bunho+" / "+root);
+	//arr.push(bunho+" / "+root);
 	//alert(arr.join("\n"));
 	
-	var url=root+"/reply/replyDelete.do";
 	var params="bunho="+bunho;
+	var url=root+"/reply/replyDelete.do?"+params;
+	//alert(url);
 	
-	sendRequest("GET",url,params,deleteFromServer);
+	$.ajax({
+		url:url,
+		type:"get",
+		dataType:"text",
+		success:deleteProcess
+	});
 }
 
-function deleteFromServer() {
+function deleteProcess(data){
+	alert(data);
+	var bunho = data;
+	//alert(bunho);
+	$("#listAlldiv").remove($(".replyDiv"));
+}
+
+/*function deleteFromServer() {
 	if(xhr.readyState==4 && xhr.status==200) {
 		// 넘어온 번호 가져오기.
 		var bunho=xhr.responseText;	
@@ -24,3 +37,4 @@ function deleteFromServer() {
 		listDiv.removeChild(div);
 	}
 }
+*/

@@ -11,7 +11,7 @@
       <dataSource type="UNPOOLED">	<!-- 매번 요청에 대해 커넥션을 열고 닫는 간단한 DataSource 이다. POOLED는 새로운 Connection 인스턴스를 생성하기 위해 매번 초기화하는 것을 피하게 해준다. -->
         <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>  <!-- web.xml -->
         <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/> <!-- database의 ConnectionProvider -->
-        <property name="username" value="hr"/>		<!-- 접속한 DB 이름과 비밀번호 -->
+        <property name="username" value="mvc"/>		<!-- 접속한 DB 이름과 비밀번호 -->
         <!-- property name="username" value="hr"/-->
         <property name="password" value="1234"/>
       </dataSource>

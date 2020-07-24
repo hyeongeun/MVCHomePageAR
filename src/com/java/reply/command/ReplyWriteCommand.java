@@ -1,6 +1,7 @@
 package com.java.reply.command;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,9 +32,15 @@ public class ReplyWriteCommand implements Command {
 			int bunho=ReplyDAO.getInstance().getBunho();
 			logger.info(logMsg+"bunho : "+bunho);
 			
-			JSONObject obj = new JSONObject();
-			obj.put("bunho", bunho);
-			obj.put("line_reply", replydto.getLine_reply());
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("bunho",bunho);
+			map.put("reply",writeReply);
+			
+			
+			JSONObject obj = new JSONObject(map);
+			//JSONObject obj = new JSONObject();
+			//obj.put("bunho", bunho);
+			//obj.put("line_reply", replydto.getLine_reply());
 			logger.info(logMsg+obj);
 			
 			String str=bunho+","+writeReply;	// JSON으로 보내주기 위함. 자바스크립트에서 ,로 구분하여 만들어준다.(SPRING 실습때 진행)
