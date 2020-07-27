@@ -14,7 +14,7 @@ function selectToServer(bunho,requestRoot) {
 	var params="bunho="+bunho;
 	var url=root+"/reply/replySelect.do?"+params;
 	
-	$("a").unbind();
+	//$("a").unbind();
 	//alert(url);
 
 	$.ajax({
@@ -35,14 +35,12 @@ function selectProcess(data){
 	var reply = obj.reply;
 	
 	var updateReplyText = "<div id=up"+bunho+">";
-	updateReplyText += "<input type='text' class='updateText' value='"+reply+"'/>";
-	updateReplyText += "<input type='button' value='수정' name='btn' onclick='updateToServer('"+bunho+"',.updateText)>";
+	updateReplyText += "<input type='text' class='updateText' id='updateReply' value='"+reply+"'/>";
+	updateReplyText += "<input type='button' value='수정' name='btn' onclick='updateToServer("+bunho+")'>";
 	updateReplyText += "</div>";
-	alert(updateReplyText);
+	//alert(updateReplyText);
 	$("#"+bunho).append(updateReplyText);
-	
-	
-	
+
 }
 
 function selectFromServer() {
@@ -81,11 +79,31 @@ function selectFromServer() {
 	}
 }
 
-function updateToServer(bunho,value) {
-	var url=root+"/reply/replyUpdate.do";
-	var params="bunho="+bunho+"&value="+value;
+function updateToServer(bunho) {
+	var params="bunho="+bunho+"&value=";
+	params += $('#updateReply').val();
+	var url=root+"/reply/replyUpdate.do?"+params;
 	
-	sendRequest("POST",url,params,updateFromServer);
+	//alert(url);
+	$.ajax({
+		url:url,
+		tye:"get",
+		data:"text",
+		success:updateProcess
+	});
+	
+}
+
+function updateProcess(data){
+	var obj = $.parseJSON(data);
+	var bunho = obj.bunho;
+	var reply = obj.reply;
+	
+	
+	$('#up'+bunho).remove();
+	$("#"+bunho).after();
+	
+
 }
 
 function updateFromServer() {

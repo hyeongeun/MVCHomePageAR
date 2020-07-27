@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import com.java.command.Command;
 import com.java.reply.model.ReplyDAO;
 
@@ -21,10 +23,15 @@ public class ReplyUpdateCommand implements Command {
 		logger.info(logMsg+"update check : "+check);
 		
 		if(check>0) {
+			JSONObject obj = new JSONObject();
+			obj.put("bunho", bunho);
+			obj.put("reply",linereply);
 			String str=bunho+","+linereply;		
+			
 			response.setContentType("application/text;charset=utf-8");
 			PrintWriter out=response.getWriter();
-			out.print(str);
+			//out.print(str);
+			out.print(obj);
 		}
 		
 		return null;

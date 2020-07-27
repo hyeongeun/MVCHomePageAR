@@ -20,10 +20,12 @@ function deleteToServer(bunho,root) {
 }
 
 function deleteProcess(data){
-	alert(data);
+	//alert(data);
+
 	var bunho = data;
 	//alert(bunho);
-	$("#listAlldiv").remove($(".replyDiv"));
+		$("#"+bunho).remove();
+
 }
 
 /*function deleteFromServer() {

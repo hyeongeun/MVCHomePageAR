@@ -23,6 +23,7 @@ public class ReplySelectCommand implements Command {
 		logger.info(logMsg+"dto : "+dto);
 		
 		if(dto!=null) {
+			
 			JSONObject obj = new JSONObject();
 			obj.put("bunho", bunho);
 			obj.put("reply",dto.getLine_reply());
@@ -31,6 +32,7 @@ public class ReplySelectCommand implements Command {
 			String str=dto.getBunho()+","+dto.getLine_reply();		
 			response.setContentType("application/text;charset=utf-8");
 			PrintWriter out=response.getWriter();
+			
 			out.print(obj);
 		}
 		
