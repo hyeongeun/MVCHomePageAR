@@ -14,7 +14,7 @@ function selectToServer(bunho,requestRoot) {
 	var params="bunho="+bunho;
 	var url=root+"/reply/replySelect.do?"+params;
 	
-	//$("a").unbind();
+	
 	//alert(url);
 
 	$.ajax({
@@ -40,6 +40,8 @@ function selectProcess(data){
 	updateReplyText += "</div>";
 	//alert(updateReplyText);
 	$("#"+bunho).append(updateReplyText);
+	
+	$("a").unbind("click");
 
 }
 
@@ -98,10 +100,10 @@ function updateProcess(data){
 	var obj = $.parseJSON(data);
 	var bunho = obj.bunho;
 	var reply = obj.reply;
+	//alert(reply);
 	
-	
+	$("#" +bunho + "> .cssReply").html(reply);
 	$('#up'+bunho).remove();
-	$("#"+bunho).after();
 	
 
 }
